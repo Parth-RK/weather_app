@@ -1,20 +1,93 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-    <title>Flask Weather App</title>
-    <link rel="stylesheet" href="static/indexStyle.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weather Dashboard</title>
+    <link rel="stylesheet" href="static/index.css">
+    <style>
+        
+    </style>
 </head>
-
 <body>
-    <form action="/" method="POST">
-        <h4>Flask Weather App</h4>
-        <label for="zipcode">Zipcode:</label>
-        <input type="text" id="zip" name="zip" placeholder="Enter zipcode" />
-        <label for="country_code">Country Code (Ex. US, UK):</label>
-        <input type="text" id="country_code" name="country_code" placeholder="Enter country code" />
-        <button type="submit" id="openweather_api">Enter</button>
-    </form>
-</body>
+    <div class="dashboard">
+        <form method="POST">
+            <input type="text" name="zipcode" placeholder="Zipcode" required>
+            <input type="text" name="country_code" placeholder="Country Code (Ex. US, UK)" required>
+            <button type="submit">Enter</button>
+        </form>
 
+        <div class="row">
+            <div id="weather" class="widget weather-widget">
+                <div class="widget-header">
+                    <h2>Weather</h2>
+                </div>
+                <div class="widget-content">
+                    {% if weather %}
+                    <div class="weather-icon">
+                        <img src="http://openweathermap.org/img/wn/{{ weather.weather[0].icon }}@2x.png" alt="Weather Icon">
+                    </div>
+                    <div class="weather-info">
+                        <div class="temperature">{{ weather.main.temp }}°C</div>
+                        <div class="location">{{ weather.name }}, {{ weather.sys.country }}</div>
+                        <div class="description">{{ weather.weather[0].description.title() }}</div>
+                        <div class="weather-details">
+                            <span>Humidity: {{ weather.main.humidity }}%</span>
+                            <span>Wind: {{ weather.wind.speed }} km/h</span>
+                        </div>
+                        <div class="weather-details">
+                            <span>Feels Like: {{ weather.main.feels_like }}°C</span>
+                            <span>Pressure: {{ weather.main.pressure }} mB</span>
+                        </div>
+                        <div class="weather-details">
+                            <span>Lat: {{ weather.coord.lat }}°</span>
+                            <span>Lon: {{ weather.coord.lon }}°</span>
+                        </div>
+                    </div>
+                    {% else %}
+                    <div class="weather-info">
+                        <div class="temperature">--°C</div>
+                        <div class="location">Enter location...</div>
+                        <div class="weather-details">--% -- km/h</div>
+                    </div>
+                    {% endif %}
+                </div>
+            </div>
+
+            <div id="stocks" class="widget stocks-widget">
+                <div class="widget-header">
+                    <h2>Stocks</h2>
+                </div>
+                <div class="widget-content">
+                    <div class="stocks-list">
+                        <!-- Stocks content here -->
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div id="news" class="widget news-widget">
+                <div class="widget-header">
+                    <h2>Latest News</h2>
+                </div>
+                <div class="widget-content">
+                    <div class="news-list">
+                        <!-- News content here -->
+                    </div>
+                </div>
+            </div>
+
+            <div id="quote" class="widget quote-widget">
+                <div class="widget-header">
+                    <h2>Quote of the Day</h2>
+                </div>
+                <div class="widget-content">
+                    <div class="quote-text"></div>
+                    <div class="quote-author"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
 </html>

@@ -25,7 +25,7 @@ def index():
         
         # Check if the request was successful
         if openweather.status_code == 200:
-            return render_template('weather.html', weather=openweather.json())
+            return render_template('index.html', weather=openweather.json())
         else:
             return f"Error: Unable to fetch data from OpenWeather API. Status code: {openweather.status_code}"
 
