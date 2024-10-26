@@ -51,3 +51,24 @@ input, button {
     padding: 8px;
     margin-right: 10px;
 }
+
+/* static/index.css */
+body {
+    margin: 0;
+    padding: 0;
+}
+/* static/index.css */
+.dashboard {
+    background-image: url('/static/assets/bg-image.jpg'); /* Background for visible container */
+    background-size: cover;
+    background-color: aqua;
+    background-position: center;
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+    padding: 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+    color: #333; /* Text color for readability */
+    border-radius: 12px; /* Optional for styling */
+}
+
