@@ -10,8 +10,8 @@ def index():
     if request.method == 'GET':
         return render_template("index.html")
     elif request.method == 'POST':
-        user_zipcode = request.form.get("zip")
-        user_country_code = request.form.get("country_code")
+        user_zipcode = request.form.get("zipcode")
+        user_city = request.form.get("city")
         
         # Check if API key is available
         api_key = os.getenv("API_KEY")
@@ -19,15 +19,23 @@ def index():
             return "API key not found. Please set API_KEY in your environment variables."
 
         # Send request to OpenWeather API
-        openweather = requests.get(
-            f"https://api.openweathermap.org/data/2.5/weather?zip={user_zipcode},{user_country_code}&appid={api_key}&units=imperial"
-        )
-        
-        # Check if the request was successful
-        if openweather.status_code == 200:
-            return render_template('index.html', weather=openweather.json())
-        else:
-            return f"Error: Unable to fetch data from OpenWeather API. Status code: {openweather.status_code}"
+        try:
+            # openweather = requests.get(
+            #     f"https://api.openweathermap.org/data/2.5/weather?zip={user_zipcode},{user_city}&appid={api_key}&units=imperial"
+            # )
+            base_url = "http://api.openweathermap.org/data/2.5/weather?"
+            complete_url = f"{base_url}q={user_city}&appid={api_key}&units=metric"
+            openweather = requests.get(complete_url)
+            # Check if the request was successful
+            if openweather.status_code == 200:
+                weather_data = openweather.json()
+                return render_template('index.html', weather=weather_data)
+            else:
+                # Display error message if request fails
+                return f"Error: Unable to fetch data from OpenWeather API. Status code: {openweather.status_code}"
+        except requests.RequestException as e:
+            # Catch and display request errors
+            return f"An error occurred: {e}"
 
 # Run the application
 if __name__ == '__main__':
