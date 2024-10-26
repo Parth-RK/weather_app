@@ -1,14 +1,16 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Weather Dashboard</title>
     <link rel="stylesheet" href="static/index.css">
     <style>
-        
+
     </style>
 </head>
+
 <body>
     <div class="dashboard">
         <form method="POST">
@@ -25,7 +27,8 @@
                 <div class="widget-content">
                     {% if weather %}
                     <div class="weather-icon">
-                        <img src="http://openweathermap.org/img/wn/{{ weather.weather[0].icon }}@2x.png" alt="Weather Icon">
+                        <img src="http://openweathermap.org/img/wn/{{ weather.weather[0].icon }}@2x.png"
+                            alt="Weather Icon">
                     </div>
                     <div class="weather-info">
                         <div class="temperature">{{ weather.main.temp }}°C</div>
@@ -90,4 +93,5 @@
         </div>
     </div>
 </body>
+
 </html>
