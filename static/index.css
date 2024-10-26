@@ -54,6 +54,38 @@
     height: 100px;
 }
 
+.stocks-info {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.stock-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 0;
+    border-bottom: 1px solid #eee;
+}
+
+.stock-item:last-child {
+    border-bottom: none;
+}
+
+.stock-value {
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+
+.stock-change.up {
+    color: #2ecc71; /* Green for up */
+}
+
+.stock-change.down {
+    color: #e74c3c; /* Red for down */
+}
+
+
 form {
     margin-bottom: 20px;
 }

@@ -6,7 +6,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Weather Dashboard</title>
     <link rel="stylesheet" href="../static/index.css">
-
 </head>
 
 <body>
@@ -23,34 +22,46 @@
                     <h2>Weather</h2>
                 </div>
                 <div class="widget-content">
+                    <div class="location">Enter location</div>
                     {% if weather %}
-                    <div class="weather-icon">
-                        <img src="http://openweathermap.org/img/wn/{{ weather.weather[0].icon }}@2x.png"
-                            alt="Weather Icon">
-                    </div>
-                    <div class="weather-info">
-                        <div class="temperature">{{ weather.main.temp }}°C</div>
-                        <div class="location">{{ weather.name }}, {{ weather.sys.country }}</div>
-                        <div class="description">{{ weather.weather[0].description.title() }}</div>
-                        <div class="weather-details">
-                            <span>Humidity: {{ weather.main.humidity }}%</span>
-                            <span>Wind: {{ weather.wind.speed }} km/h</span>
+                        <div id="weather-content" class="weather-info" style="display: none;">
+                            <div class="weather-icon">
+                                <img src="http://openweathermap.org/img/wn/{{ weather.weather[0].icon }}@2x.png" alt="Weather Icon">
+                            </div>
+                            <div class="temperature">{{ weather.main.temp }}°C</div>
+                            <div class="location">{{ weather.name }}, {{ weather.sys.country }}</div>
+                            <div class="description">{{ weather.weather[0].description.title() }}</div>
+                            <div class="weather-details">
+                                <span>Humidity: {{ weather.main.humidity }}%</span>
+                                <span>Wind: {{ weather.wind.speed }} km/h</span>
+                            </div>
+                            <div class="weather-details">
+                                <span>Feels Like: {{ weather.main.feels_like }}°C</span>
+                                <span>Pressure: {{ weather.main.pressure }} mB</span>
+                            </div>
+                            <div class="weather-details">
+                                <span>Lat: {{ weather.coord.lat }}°</span>
+                                <span>Lon: {{ weather.coord.lon }}°</span>
+                            </div>
                         </div>
-                        <div class="weather-details">
-                            <span>Feels Like: {{ weather.main.feels_like }}°C</span>
-                            <span>Pressure: {{ weather.main.pressure }} mB</span>
-                        </div>
-                        <div class="weather-details">
-                            <span>Lat: {{ weather.coord.lat }}°</span>
-                            <span>Lon: {{ weather.coord.lon }}°</span>
-                        </div>
-                    </div>
                     {% else %}
-                    <div class="weather-info">
-                        <div class="temperature">--°C</div>
-                        <div class="location">Enter location...</div>
-                        <div class="weather-details">--% -- km/h</div>
-                    </div>
+                        <div class="weather-info">
+                            <div class="temperature">--°C</div>
+                            <div class="location">Your City, Your Country</div>
+                            <div class="description">Wondering how's the weather</div>
+                            <div class="weather-details">
+                                <span>Humidity: --%</span>
+                                <span>Wind: -.-- km/h</span>
+                            </div>
+                            <div class="weather-details">
+                                <span>Feels Like: --.--°C</span>
+                                <span>Pressure: ---- mB</span>
+                            </div>
+                            <div class="weather-details">
+                                <span>Lat: --.--°</span>
+                                <span>Lon: --.--°</span>
+                            </div>
+                        </div>
                     {% endif %}
                 </div>
             </div>
@@ -60,11 +71,47 @@
                     <h2>Stocks</h2>
                 </div>
                 <div class="widget-content">
-                    <div class="stocks-list">
-                        <!-- Stocks content here -->
-                    </div>
+                    {% if stocks %}
+                        <div class="stocks-info">
+                            <div class="stock-item">
+                                <h3>Nifty 50</h3>
+                                <div class="stock-value">{{ stocks.nifty50.value }}</div>
+                                <div class="stock-change">
+                                    <span class="{{ 'up' if stocks.nifty50.change >= 0 else 'down' }}">
+                                        {{ stocks.nifty50.change }}%
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="stock-item">
+                                <h3>Sensex</h3>
+                                <div class="stock-value">{{ stocks.sensex.value }}</div>
+                                <div class="stock-change">
+                                    <span class="{{ 'up' if stocks.sensex.change >= 0 else 'down' }}">
+                                        {{ stocks.sensex.change }}%
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    {% else %}
+                        <div class="stocks-info">
+                            <div class="stock-item">
+                                <h3>Nifty 50</h3>
+                                <div class="stock-value">--</div>
+                                <div class="stock-change">
+                                    <span>--%</span>
+                                </div>
+                            </div>
+                            <div class="stock-item">
+                                <h3>Sensex</h3>
+                                <div class="stock-value">--</div>
+                                <div class="stock-change">
+                                    <span>--%</span>
+                                </div>
+                            </div>
+                        </div>
+                    {% endif %}
                 </div>
-            </div>
+            </div>            
         </div>
 
         <div class="row">
@@ -90,6 +137,8 @@
             </div>
         </div>
     </div>
+
+    <script src="../static/index.js"></script>
 </body>
 
 </html>
