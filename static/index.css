@@ -58,7 +58,7 @@ html, body {
 }
 
 /* Additional responsive styling */
-@media (max-width: 768px) {
+/* @media (max-width: 768px) {
     .row {
         
     }
@@ -66,7 +66,7 @@ html, body {
     .widget {
         margin-bottom: 20px;
     }
-}
+} */
 
 /* Stock difference arrows and colors */
 .stock-change {
@@ -81,17 +81,16 @@ html, body {
     line-height: 1;
 }
 
-.arrow.up {
-    color: #2ecc71;
+.stock-change.up {
+    color: #2ecc71; /* Green for up */
 }
 
-.arrow.down {
-    color: #e74c3c;
+.stock-change.down {
+    color: #e74c3c; /* Red for down */
 }
 
-/* Additional styling improvements */
-.widget-header {
-    border-bottom: 2px solid rgba(0, 0, 0, 0.1);
+
+form {
     margin-bottom: 20px;
 }
 
@@ -116,4 +115,23 @@ html, body {
     font-size: 1.8rem;
     font-weight: 700;
     color: #2c3e50;
+}
+
+.news-item {
+    margin-bottom: 10px;
+}
+
+.news-item a {
+    font-weight: bold;
+    color: #333;
+    text-decoration: none;
+}
+
+.news-item a:hover {
+    text-decoration: underline;
+}
+
+.news-item p {
+    margin: 5px 0;
+    color: #666;
 }
