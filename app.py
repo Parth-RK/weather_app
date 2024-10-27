@@ -62,6 +62,16 @@ def index():
             else:
                 headlines = []
 
+             # Fetch Quote of the Day from ZenQuotes
+            quote_url = "https://zenquotes.io/api/today"
+            quote_response = requests.get(quote_url)
+            if quote_response.status_code == 200:
+                quote_data = quote_response.json()
+                quote_text = quote_data[0]['q']
+                quote_author = quote_data[0]['a']
+            else:
+                quote_text, quote_author = "Stay positive and keep pushing forward!", "Unknown"
+
             # Render only if data is available
             if openweather.status_code == 200:
                 weather_data = openweather.json()
@@ -72,7 +82,9 @@ def index():
                     nifty_diff=nifty_diff, 
                     sensex=sensex_close, 
                     sensex_diff=sensex_diff,
-                    headlines=headlines
+                    headlines=headlines,
+                     quote_text=quote_text, 
+                    quote_author=quote_author
                 )
             else:
                 # Display error message if request fails

@@ -141,8 +141,12 @@
                     <h2>Quote of the Day</h2>
                 </div>
                 <div class="widget-content">
-                    <div class="quote-text"></div>
-                    <div class="quote-author"></div>
+                    {% if quote_text and quote_author %}
+                    <div class="quote-text">"{{ quote_text }}"</div>
+                    <div class="quote-author">- {{ quote_author }}</div>
+                    {% else %}
+                    <p>No quote available at the moment.</p>
+                    {% endif %}
                 </div>
             </div>
         </div>
