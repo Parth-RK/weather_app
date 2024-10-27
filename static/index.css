@@ -81,11 +81,11 @@ html, body {
     line-height: 1;
 }
 
-.stock-change.up {
+.arrow.up {
     color: #2ecc71; /* Green for up */
 }
 
-.stock-change.down {
+.arrow.down {
     color: #e74c3c; /* Red for down */
 }
 
