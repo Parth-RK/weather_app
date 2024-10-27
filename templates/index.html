@@ -78,18 +78,23 @@
                             <h3>Nifty 50</h3>
                             <div class="stock-value">{{ nifty | round(2) }}</div>
                             <div class="stock-change">
-                                <span class="{{ 'up' if nifty_diff > 0 else 'down' }}">
-                                    {{ nifty_diff | round(2) }}
-                                </span>
+                                {% if nifty_diff > 0 %}
+                                <span class="arrow up">▲</span> {{ (nifty_diff | abs) | round(2) }}
+                                {% else %}
+                                <span class="arrow down">▼</span> {{ (nifty_diff | abs) | round(2) }}
+                                {% endif %}
                             </div>
                         </div>
                         <div class="stock-item">
                             <h3>Sensex</h3>
                             <div class="stock-value">{{ sensex | round(2) }}</div>
                             <div class="stock-change">
-                                <span class="{{ 'up' if sensex_diff > 0 else 'down' }}">
-                                    {{ sensex_diff | round(2) }}
-                                </span>
+                                {% if sensex_diff > 0 %}
+                                <span class="arrow up">▲</span> {{ (sensex_diff | abs) | round(2) }}
+                                {% else %}
+                                <span class="arrow down">▼</span> {{ (sensex_diff | abs) | round(2) }}
+                                {% endif %}
+                            </div>
                             </div>
                         </div>
                     </div>
@@ -115,7 +120,7 @@
             </div>
         </div>
 
-        <div class="row">
+        <div class="row2">
             <div id="news" class="widget news-widget">
                 <div class="widget-header">
                     <h2>Latest News</h2>
