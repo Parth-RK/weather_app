@@ -122,7 +122,16 @@
                 </div>
                 <div class="widget-content">
                     <div class="news-list">
-                        <!-- News content here -->
+                        {% if headlines %}
+                        {% for article in headlines %}
+                        <div class="news-item">
+                            <a href="{{ article.url }}" target="_blank">{{ article.title }}</a>
+                            <p>{{ article.description }}</p>
+                        </div>
+                        {% endfor %}
+                        {% else %}
+                        <p>No news available at the moment.</p>
+                        {% endif %}
                     </div>
                 </div>
             </div>

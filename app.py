@@ -16,6 +16,8 @@ def index():
         
         # Check if API key is available
         api_key = os.getenv("API_KEY")
+        api_key_news = os.getenv("NEWS_API_KEY")
+
         if not api_key:
             return "API key not found. Please set API_KEY in your environment variables."
 
@@ -48,6 +50,18 @@ def index():
             else:
                 sensex_close = sensex_diff = None
 
+            
+                       # Fetch headlines from NewsData.io
+            news_url = f"https://newsdata.io/api/1/news?apikey={api_key_news}&country=in&language=en&category=business"
+            news_response = requests.get(news_url)
+            print("NewsData.io API response:", news_response.json())  # Debugging line
+
+            # Extract articles if response is valid
+            if news_response.status_code == 200:
+                headlines = news_response.json().get('results', [])
+            else:
+                headlines = []
+
             # Render only if data is available
             if openweather.status_code == 200:
                 weather_data = openweather.json()
@@ -57,7 +71,8 @@ def index():
                     nifty=nifty_close, 
                     nifty_diff=nifty_diff, 
                     sensex=sensex_close, 
-                    sensex_diff=sensex_diff
+                    sensex_diff=sensex_diff,
+                    headlines=headlines
                 )
             else:
                 # Display error message if request fails
