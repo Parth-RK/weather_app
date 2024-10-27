@@ -113,7 +113,8 @@ app = Flask(__name__)
 def index():
     api_key_news = os.getenv("NEWS_API_KEY")  # NewsData.io API key
     api_key_weather = os.getenv("API_KEY")     # OpenWeatherMap API key
-
+    api_key_cricket = os.getenv("CRICKET_API_KEY") # CricAPI key
+    
     # Fetch stock, news, and quote data on both GET and POST requests
     # Fetch stock data
     nifty = yf.Ticker("^NSEI")
@@ -141,6 +142,10 @@ def index():
     else:
         quote_text, quote_author = "Stay positive and keep pushing forward!", "Unknown"
 
+   
+
+    
+    
     # Initialize weather data as None
     weather_data = None
 
@@ -161,7 +166,7 @@ def index():
         sensex_diff=sensex_diff,
         headlines=headlines,
         quote_text=quote_text,
-        quote_author=quote_author
+        quote_author=quote_author,
     )
 
 if __name__ == '__main__':

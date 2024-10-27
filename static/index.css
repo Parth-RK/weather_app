@@ -4,9 +4,10 @@
     --black-color: #000;
     --white-color: #FFFFFF;
     --crimson-color: #a11039;
-  }
+}
 
-html, body {
+html,
+body {
     position: absolute;
     margin-bottom: 100px;
     padding: 0;
@@ -47,13 +48,14 @@ html, body {
 /* Widget base styles */
 .widget {
     background: rgba(255, 255, 255, 0.1);
-    backdrop-filter: blur(10px);
+    backdrop-filter: blur(30px);
     border-radius: 12px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     padding: 20px;
     transition: transform 0.2s ease;
     height: fit-content;
-    min-width: 0; /* Prevents content from pushing out */
+    min-width: 0;
+    /* Prevents content from pushing out */
 }
 
 .widget:hover {
@@ -61,14 +63,15 @@ html, body {
 }
 
 /* Specific widget styles */
-.weather-widget, .stocks-widget {
+.weather-widget,
+.stocks-widget {
     min-height: 300px;
     display: flex;
     flex-direction: column;
 }
 
 .news-widget {
-    max-height: 600px;
+    max-height: 400px;
     overflow-y: auto;
     /* max-width: 94%; */
     padding-bottom: 10px;
@@ -99,18 +102,24 @@ html, body {
 .news-item {
     margin-bottom: 15px;
     word-wrap: break-word;
+    color: aliceblue;
+    font-family: 'Times New Roman', Times, serif;
+    font-size: large;
+    font-weight: 400;
 }
 
 /* Responsive design */
 @media (max-width: 768px) {
-    .row, .row2 {
+
+    .row,
+    .row2 {
         grid-template-columns: 1fr;
     }
-    
+
     .widget {
         min-height: auto;
     }
-    
+
     .news-widget {
         max-height: 400px;
     }
@@ -163,14 +172,16 @@ html, body {
 
 /* Quote specific styles */
 .quote-text {
-    font-size: 1.2rem;
+    font-size: 1.5rem;
     font-style: italic;
-    margin-bottom: 10px;
-    color: var(--crimson-color);
+    margin-bottom: 0px;
+    font: bolder;
+    color: rgb(249, 55, 55);
 }
 
 .quote-author {
-    font-weight: 500;
+    font-weight: 800;
     text-align: right;
-    color: var(--crimson-color);
+    color: rgb(255, 0, 0);
+
 }
