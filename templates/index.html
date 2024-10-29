@@ -19,7 +19,7 @@
         <div class="row">
             <div id="weather" class="widget weather-widget">
                 <div class="widget-header">
-                    <h2>Weather</h2>
+                    <h2 class="widget_title">Weather</h2>
                 </div>
                 <div class="widget-content">
                     {% if weather %}
@@ -69,7 +69,7 @@
 
             <div id="stocks" class="widget stocks-widget">
                 <div class="widget-header">
-                    <h2>Stocks</h2>
+                    <h2 class="widget_title">Stocks</h2>
                 </div>
                 <div class="widget-content">
                     {% if nifty and sensex %}
@@ -101,14 +101,14 @@
                     {% else %}
                     <div class="stocks-info">
                         <div class="stock-item">
-                            <h3>Nifty 50</h3>
+                            <h3 class="widget_title2">Nifty 50</h3>
                             <div class="stock-value">--</div>
                             <div class="stock-change">
                                 <span>--</span>
                             </div>
                         </div>
                         <div class="stock-item">
-                            <h3>Sensex</h3>
+                            <h3 class="widget_title2">Sensex</h3>
                             <div class="stock-value">--</div>
                             <div class="stock-change">
                                 <span>--</span>
@@ -123,7 +123,7 @@
         <div class="row2">
             <div id="news" class="widget news-widget">
                 <div class="widget-header">
-                    <h2>Latest News</h2>
+                    <h2 class="widget_title">Latest News</h2>
                 </div>
                 <div class="widget-content">
                     <div class="news-list">
@@ -135,7 +135,7 @@
                         </div>
                         {% endfor %}
                         {% else %}
-                        <p>No news available at the moment.</p>
+                        <div class="news-item">No news available at the moment.</div>
                         {% endif %}
                     </div>
                 </div>
@@ -143,7 +143,7 @@
 
             <div id="quote" class="widget quote-widget">
                 <div class="widget-header">
-                    <h2>Quote of the Day</h2>
+                    <h2 class="widget_title">Quote of the Day</h2>
                 </div>
                 <div class="widget-content">
                     {% if quote_text and quote_author %}

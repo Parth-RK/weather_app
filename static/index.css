@@ -1,13 +1,12 @@
 /* Base styles */
 :root {
-    --cyan-color: #00A380;
     --black-color: #000;
     --white-color: #FFFFFF;
-    --crimson-color: #a11039;
-}
+    --text1-color: #a11039;
+    --text2-color: #00A380;
+  }
 
-html,
-body {
+html, body {
     position: absolute;
     margin-bottom: 100px;
     padding: 0;
@@ -48,14 +47,13 @@ body {
 /* Widget base styles */
 .widget {
     background: rgba(255, 255, 255, 0.1);
-    backdrop-filter: blur(30px);
+    backdrop-filter: blur(10px);
     border-radius: 12px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     padding: 20px;
     transition: transform 0.2s ease;
     height: fit-content;
-    min-width: 0;
-    /* Prevents content from pushing out */
+    min-width: 0; /* Prevents content from pushing out */
 }
 
 .widget:hover {
@@ -63,15 +61,14 @@ body {
 }
 
 /* Specific widget styles */
-.weather-widget,
-.stocks-widget {
+.weather-widget, .stocks-widget {
     min-height: 300px;
     display: flex;
     flex-direction: column;
 }
 
 .news-widget {
-    max-height: 400px;
+    max-height: 600px;
     overflow-y: auto;
     /* max-width: 94%; */
     padding-bottom: 10px;
@@ -92,6 +89,15 @@ body {
     overflow: hidden;
 }
 
+h2.widget_title {
+    font-size: xx-large;
+    color: var(--white-color);
+}
+
+h3.widget_title2 {
+    font-size: 1.4rem;
+    color: var(--black-color);
+}
 /* News specific styles */
 .news-list {
     display: flex;
@@ -102,35 +108,22 @@ body {
 .news-item {
     margin-bottom: 15px;
     word-wrap: break-word;
-    color: aliceblue;
-    font-family: 'Times New Roman', Times, serif;
-    font-size: large;
-    font-weight: 400;
+    color: var(--black-color);
 }
 
 /* Responsive design */
 @media (max-width: 768px) {
-
-    .row,
-    .row2 {
+    .row, .row2 {
         grid-template-columns: 1fr;
     }
-
+    
     .widget {
         min-height: auto;
     }
-
+    
     .news-widget {
         max-height: 400px;
     }
-}
-
-/* Keep your existing styles for stock arrows, text colors, etc. */
-.stock-change {
-    display: flex;
-    align-items: center;
-    gap: 4px;
-    font-weight: 500;
 }
 
 .arrow {
@@ -148,13 +141,15 @@ body {
 
 /* Weather specific styles */
 .weather-info {
+    color:  var(--white-color);
+
     text-align: center;
 }
 
 .temperature {
     font-size: 2.5rem;
     font-weight: 700;
-    color: var(--crimson-color);
+    color: var(--black-color);
 }
 
 .weather-details {
@@ -167,21 +162,28 @@ body {
 .stock-value {
     font-size: 1.8rem;
     font-weight: 700;
+    color: var(--white-color);
+}
+
+.stock-change {
     color: var(--black-color);
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    font-weight: 500;
 }
 
 /* Quote specific styles */
 .quote-text {
-    font-size: 1.5rem;
+    font-size: 1.3rem;
     font-style: italic;
-    margin-bottom: 0px;
-    font: bolder;
-    color: rgb(249, 55, 55);
+    margin-bottom: 10px;
+    color: var(--black-color);
 }
 
 .quote-author {
-    font-weight: 800;
+    font-size: 1.1rem;
+    font-weight: 500;
     text-align: right;
-    color: rgb(255, 0, 0);
-
+    color: var(--white-color);
 }
