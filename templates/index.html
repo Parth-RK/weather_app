@@ -10,12 +10,14 @@
 
 <body>
     <div class="dashboard">
+        <!-- form section -->
+        <div class="form">
         <form method="POST">
-            <input type="text" name="zipcode" placeholder="Zipcode">
-            <input type="text" name="city" placeholder="City (Ex. mumbai, delhi)" required>
-            <button type="submit">Enter</button>
-        </form>
-
+            <!-- <input type="text" name="zipcode" placeholder="Zipcode"> -->
+            <input type="text" class="input-field" name="city" placeholder="Enter your City (Ex. mumbai, delhi)" required>
+            <button type="submit" class="submit-button">Enter</button>
+        </form></div>
+        <!-- end form section -->
         <div class="row">
             <div id="weather" class="widget weather-widget">
                 <div class="widget-header">
@@ -23,10 +25,10 @@
                 </div>
                 <div class="widget-content">
                     {% if weather %}
+                    <div class="notlocation">Enjoy your weather</div>
                     <div id="weather-content" class="weather-info">
                         <div class="weather-icon">
-                            <img src="http://openweathermap.org/img/wn/{{ weather.weather[0].icon }}@2x.png"
-                                alt="Weather Icon">
+                            <img src="http://openweathermap.org/img/wn/{{ weather.weather[0].icon }}@2x.png" alt="Weather Icon">
                         </div>
                         <div class="temperature">{{ weather.main.temp }}°C</div>
                         <div class="location">{{ weather.name }}, {{ weather.sys.country }}</div>
@@ -39,14 +41,17 @@
                             <span>Feels Like: {{ weather.main.feels_like }}°C</span>
                             <span>Pressure: {{ weather.main.pressure }} mB</span>
                         </div>
-                        <div class="weather-details">
+                        <div class="weather-details-loc">
                             <span>Lat: {{ weather.coord.lat }}°</span>
                             <span>Lon: {{ weather.coord.lon }}°</span>
                         </div>
                     </div>
-                    {% else %}
-                    <div class="location">Enter location</div>
+                    {% elif weather is none %}
+                    <div class="notlocation">I think you're lost!</div>
                     <div class="weather-info">
+                        <div class="weather-icon">
+                            <img src='/static/assets/weather-placeholder.png'>
+                        </div>
                         <div class="temperature">--°C</div>
                         <div class="location">Your City, Your Country</div>
                         <div class="description">Wondering how's the weather</div>
@@ -58,13 +63,35 @@
                             <span>Feels Like: --.--°C</span>
                             <span>Pressure: ---- mB</span>
                         </div>
+                        <div class="weather-details-loc">
+                            <span>Lat: --.--°</span>
+                            <span>Lon: --.--°</span>
+                        </div>
+                    </div>
+                    {% else %}
+                    <div class="notlocation">Do you know where you are?!</div>
+                    <div class="weather-info">
+                        <div class="weather-icon">
+                            <img src='/static/assets/weather-placeholder.png'>
+                        </div>
+                        <div class="temperature">--°C</div>
+                        <div class="location">Your City, Your Country</div>
+                        <div class="description">Wondering how's the weather</div>
                         <div class="weather-details">
+                            <span>Humidity: --%</span>
+                            <span>Wind: -.-- km/h</span>
+                        </div>
+                        <div class="weather-details">
+                            <span>Feels Like: --.--°C</span>
+                            <span>Pressure: ---- mB</span>
+                        </div>
+                        <div class="weather-details-loc">
                             <span>Lat: --.--°</span>
                             <span>Lon: --.--°</span>
                         </div>
                     </div>
                     {% endif %}
-                </div>
+                </div>                
             </div>
 
             <div id="stocks" class="widget stocks-widget">
@@ -79,9 +106,9 @@
                             <div class="stock-value">{{ nifty | round(2) }}</div>
                             <div class="stock-change">
                                 {% if nifty_diff > 0 %}
-                                <span class="arrow up">▲</span> {{ (nifty_diff | abs) | round(2) }}
+                                <span class="arrow up">▲ {{ (nifty_diff | abs) | round(2) }} </span>
                                 {% else %}
-                                <span class="arrow down">▼</span> {{ (nifty_diff | abs) | round(2) }}
+                                <span class="arrow down">▼ {{ (nifty_diff | abs) | round(2) }} </span>
                                 {% endif %}
                             </div>
                         </div>
@@ -90,9 +117,9 @@
                             <div class="stock-value">{{ sensex | round(2) }}</div>
                             <div class="stock-change">
                                 {% if sensex_diff > 0 %}
-                                <span class="arrow up">▲</span> {{ (sensex_diff | abs) | round(2) }}
+                                <span class="arrow up">▲ {{ (sensex_diff | abs) | round(2) }} </span>
                                 {% else %}
-                                <span class="arrow down">▼</span> {{ (sensex_diff | abs) | round(2) }}
+                                <span class="arrow down">▼ {{ (sensex_diff | abs) | round(2) }} </span>
                                 {% endif %}
                             </div>
                             </div>

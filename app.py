@@ -147,7 +147,7 @@ def index():
     
     
     # Initialize weather data as None
-    weather_data = None
+    weather_data = []
 
     # Fetch weather data only if city is provided (POST request)
     if request.method == 'POST':
